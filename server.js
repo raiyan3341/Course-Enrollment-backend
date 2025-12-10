@@ -15,6 +15,15 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const app = express();
 connectDB();
 
+app.get('/', (req, res) => {
+    res.send('Course Enrollment API is running!'); 
+});
+
+
+app.get('/api', (req, res) => {
+    res.json({ message: 'Welcome to the Course Enrollment API v1.0' });
+});
+
 app.use(express.json({ limit: '10mb' }));
 app.use(morgan('dev'));
 app.use(cors());
