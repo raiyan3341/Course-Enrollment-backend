@@ -30,9 +30,9 @@ app.use('/api/payments', paymentRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
-const handler = (req, res) => {
-    app(req, res);
-};
+//const PORT = process.env.PORT || 5000;
+//const handler = (req, res) => {
+//    app(req, res);
+//};
 
-module.exports = handler;
+module.exports = app;
