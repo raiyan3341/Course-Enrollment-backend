@@ -5,7 +5,11 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 
 
-const allowedOrigins = ['https://course-enrollment-frontend-5abi.vercel.app'];
+const allowedOrigins = [
+  'https://course-enrollment-frontend-5abi.vercel.app',
+  'https://course-enrollment-backend.vercel.app',
+  'http://localhost:5173'
+];
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
