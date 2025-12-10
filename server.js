@@ -4,6 +4,20 @@ const morgan = require('morgan');
 const cors = require('cors');
 const connectDB = require('./config/db');
 
+
+const allowedOrigins = ['https://course-enrollment-frontend-5abi.vercel.app'];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+};
+
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const courseRoutes = require('./routes/courseRoutes');
@@ -16,7 +30,7 @@ connectDB();
 
 app.use(express.json({ limit: '10mb' }));
 app.use(morgan('dev'));
-app.use(cors());
+app.use(cors(corsOptions));
 
 
 app.use('/api/auth', authRoutes);
